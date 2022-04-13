@@ -1,0 +1,41 @@
+extends ../layout/base 
+block content 
+	section.content-header 
+		h1 
+			| SiwanGym
+	section.content
+			.box-body
+				form(role='form',method='post' action='/gym/adduser')
+					.row
+						
+						.col-xs-6
+							.box-body
+								- if (messages.msg_error) 
+									.alert.alert-danger.alert-dismissable 
+										button.close(type='button', data-dismiss='alert', aria-hidden='true') 
+											| ×
+										h4
+											i.icon.fa.fa-ban
+											| Alert! 
+										| !{messages.msg_error}
+								.form-group
+									label
+										| nama
+									input(type='text',value='#{nama}',name='nama',placeholder='Enter nama', autofocus).form-control
+								.form-group
+									label
+										| alamat
+									input(type='text',name='alamat',placeholder='Enter alamat').form-control
+								.form-group
+									label
+										| no_hp
+									input(type='text',value='#{no_hp}',name='no_hp',placeholder='Enter no_hp').form-control
+								.form-group
+									label
+										| masa_aktif
+									input(type='text',name='masa_aktif',placeholder='Enter masa_aktif').form-control
+							.box-footer
+								button(type='submit').btn.btn-primary
+									| Submit
+								a(href='/gym').btn.btn-primary.pull-right
+									| Back

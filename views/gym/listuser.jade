@@ -1,0 +1,50 @@
+extends ../layout/base 
+block content 
+	img(src="/images/", alt="")
+	section.content-header 
+		h1 
+			| SiwanGym
+	section.content
+			.box-body
+				- if(messages.msg_info)
+					.alert.alert-success.alert-dismissable
+						button.close(type='button', data-dismiss='alert', aria-hidden='true')
+							| ×
+						h4
+							i.icon.fa.fa-check
+							| Success!
+						| !{messages.msg_info}
+				- if(messages.msg_error)
+					.alert.alert-danger.alert-dismissable
+						button.close(type='button', data-dismiss='alert', aria-hidden='true')
+							| ×
+						h4
+							i.icon.fa.fa-ban
+							| Alert!
+						| !{messages.msg_error}
+				a(href='/gym/adduser').pull-left.btn.btn-primary
+					i.fa.fa-plus 
+					|  Add
+				.data-table
+					table.table.table-bordered
+						tr
+							th
+								| No
+							th
+								| Nama
+							th
+								| Alamat
+							th
+								| No HP
+							th
+								| Masa Aktif
+							if messages.msg_error
+								| !{messages.msg_error}
+							else
+								for row, index in data 
+									tr
+										td #{index+1}
+										td #{row.nama}
+										td #{row.alamat}
+										td #{row.no_hp}
+										td #{row.masa_aktif}

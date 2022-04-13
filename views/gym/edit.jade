@@ -1,0 +1,51 @@
+extends ../layout/base 
+block content 
+	section.content-header 
+		h1 
+			| Edit
+	section.content
+			.box-body
+				form(role='form',method='post' action='/gymadmin/edit/#{(id==undefined) ? data.id : id}')
+					.row
+						
+						.col-xs-6
+							.box-body
+								- if (messages.msg_error) 
+									.alert.alert-danger.alert-dismissable 
+										button.close(type='button', data-dismiss='alert', aria-hidden='true') 
+											| ×
+										h4
+											i.icon.fa.fa-ban
+											| Alert! 
+										| !{messages.msg_error}
+								- if (messages.msg_info) 
+									.alert.alert-success.alert-dismissable 
+										button.close(type='button', data-dismiss='alert', aria-hidden='true') 
+											| ×
+										h4
+											i.icon.fa.fa-ban
+											| Success! 
+										| !{messages.msg_info}
+								.form-group
+									label
+										| nama
+									input(type='text',value="#{data.nama}",name='nama',placeholder='Enter nama', autofocus).form-control
+								.form-group
+									label
+										| alamat
+									input(type='text',value="#{ (alamat == undefined) ? data.alamat : alamat }",name='alamat',placeholder='Enter alamat').form-control
+								.form-group
+									label
+										| no_hp
+									input(type='text',value="#{ (no_hp == undefined) ? data.no_hp : no_hp }",name='no_hp',placeholder='Enter no_hp').form-control
+								.form-group
+									label
+										| masa_aktif
+									input(type='text',value="#{ (masa_aktif == undefined) ? data.masa_aktif : masa_aktif }",name='masa_aktif',placeholder='Enter masa_aktif').form-control
+							.box-footer
+								input(type="hidden",name="_method", value="PUT")
+								button(type='submit').btn.btn-primary
+									i.fa.fa-pencil 
+									|  Edit
+								a(href='/gymadmin').btn.btn-primary.pull-right
+									| Back
